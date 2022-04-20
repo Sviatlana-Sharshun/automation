@@ -1,20 +1,17 @@
 package com.stormnet;
 
-import com.stormnet.pagewidgets.*;
+import com.stormnet.pagewidgets.GoogleSearch;
+import com.stormnet.pagewidgets.SearchResults;
 
-import org.junit.jupiter.api.*;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.CollectionCondition.*;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.open;
 
 /**
  * Simple Selenide Test with PageObjects
  */
-public class GoogleTest
+public class GoogleTest{
 
-{
-    @Test
     public void searchForSelenide() {
         // Arrange
         open("https://google.com/ncr");
