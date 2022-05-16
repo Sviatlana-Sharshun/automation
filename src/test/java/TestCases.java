@@ -2,6 +2,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
@@ -12,29 +13,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCases {
     @Test
-    public void qase1() {
+    public void orderCasualDress() {
         Selenide.open("http://automationpractice.com/index.php");
         $(".login").click();
         $("#email").sendKeys("pkotot@mailto.plus");
         $("#passwd").sendKeys("12345");
         $("#SubmitLogin").click();
         $("#block_top_menu > ul > li:nth-child(2) > a").click();
-        $("#categories_block_left > div > ul > li:nth-child(1)").click();
+        $("#categories_block_left li:nth-child(1)").click();
         $("a.product_img_link > img").hover();
-        $(".ajax_add_to_cart_button.btn.btn-default").click();
-        $(".btn-default.button.button-medium").click();
+        $(".ajax_add_to_cart_button").click();
+        $("a.button-medium").click();
         $(".standard-checkout.button-medium").click();
         $("p > button").click();
         $("#cgv").click();
         $(".standard-checkout.button-medium").click();
         $(".bankwire").click();
         $("#cart_navigation > button").click();
-        $(".page-heading").shouldHave(Condition.text("Order confirmation"));
+        assertEquals("ORDER CONFIRMATION", $(".page-heading").getText());
         $(".logout").click();
     }
 
     @Test
-    public void qase2() {
+    public void sendEmailCustomerService	() {
         Selenide.open("http://automationpractice.com/index.php");
         $(".login").click();
         $("#email_create").sendKeys(RandomStringUtils.randomAlphabetic(5) + "@gmail.com");
@@ -67,7 +68,7 @@ public class TestCases {
         $("#alias").sendKeys("18, Baker street");
         $("#submitAccount").click();
         $("#block_top_menu > ul > li:nth-child(2) > a").click();
-        $("#categories_block_left > div > ul > li:nth-child(1)").click();
+        $("#categories_block_left li:nth-child(1)").click();
         $("a.product_img_link > img").hover();
         $(".ajax_add_to_cart_button.btn.btn-default").click();
         $(".btn-default.button.button-medium").click();
@@ -92,13 +93,13 @@ public class TestCases {
         $(withText(product)).shouldBe(Condition.visible).click();
         $("#message").sendKeys("I have a problem with my order. Could you help me?");
         $("#submitMessage").click();
-        $(".alert.alert-success")
-                .shouldHave(Condition.text("Your message has been successfully sent to our team."));
+        assertEquals("Your message has been successfully sent to our team.", $(".alert-success")
+                .getText());
         $(".logout").click();
     }
 
     @Test
-    public void qase3() {
+    public void writeReview() {
         Selenide.open("http://automationpractice.com/index.php");
         $(".login").click();
         $("#email").sendKeys("pkotot@mailto.plus");
@@ -106,7 +107,7 @@ public class TestCases {
         $("#SubmitLogin").click();
         $("#block_top_menu > ul > li:nth-child(3)").click();
         $("[itemprop='name']").hover();
-        $(".lnk_view.btn.btn-default").click();
+        $(".lnk_view.btn").click();
         $("li a.open-comment-form").click();
         $("a[title = '5']").click();
         $("#comment_title").sendKeys("High quality product");
@@ -121,12 +122,12 @@ public class TestCases {
                         "\n" +
                         "OK",
                 $(".fancybox-inner").getText());
-        $("button.button.btn-default.button-medium").click();
+        $("button.button-medium").click();
         $(".logout").click();
     }
 
     @Test
-    public void qase4() {
+    public void addWishlist() {
         Selenide.open("http://automationpractice.com/index.php");
         $(".login").click();
         $("#email").sendKeys("pkotot@mailto.plus");
@@ -135,20 +136,20 @@ public class TestCases {
         $("[title = 'Women']").click();
         $("#categories_block_left > div > ul > li:nth-child(1)").click();
         $(".product-name[title='Blouse']").hover();
-        $(".last-item-of-tablet-line a.button.lnk_view.btn.btn-default").click();
+        $(".last-item-of-tablet-line .lnk_view").click();
         $("#wishlist_button").click();
         $(".fancybox-close").click();
         $(".account").click();
         $(".lnk_wishlist").click();
-        $("#block-history td:nth-child(1) > a").click();
-        $(".icon-remove-sign").click();
-        $("#block-history td:nth-child(1) > a").click();
-        $(".alert.alert-warning").shouldHave(Condition.text("No products"));
+        $(".icon-remove").click();
+        Selenide.switchTo().alert().accept();
+        $(".table-bordered").should(Condition.disappear);
+        Assertions.assertFalse($(".table-bordered").isDisplayed());
         $(".logout").click();
     }
 
     @Test
-    public void qase5() {
+    public void displayForDifferentDressColor() {
         Selenide.open("http://automationpractice.com/index.php");
         $("#block_top_menu > ul > li:nth-child(2) > a").click();
         $("#categories_block_left > div > ul > li.last > a").click();
@@ -160,10 +161,8 @@ public class TestCases {
         $("#color_16").click();
         WebDriverRunner driverRunner = new WebDriverRunner();
         String url = driverRunner.url();
-        if (url.contains("yellow")) {
-            System.out.println("Цвет соответствует");
-        } else {
-            System.out.println("Цвет не соответствует");
-        }
+        assertEquals(
+                "http://automationpractice.com/index.php?id_product=5&controller=product#/size-s/color-yellow",
+                url);
     }
 }
