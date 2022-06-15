@@ -1,6 +1,7 @@
 package service.ui;
 
 import com.codeborne.selenide.SelenideElement;
+import enums.Feature;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategy;

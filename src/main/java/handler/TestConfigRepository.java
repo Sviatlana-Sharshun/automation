@@ -21,7 +21,8 @@ public class TestConfigRepository {
     public TestConfig getTestConfig(){
         try {
             return mapper.readValue(getClass().getClassLoader().getResource(PATCH_TO_FILE),
-                    new TypeReference<TestConfig>() {});
+                    new TypeReference<TestConfig>() {
+                    });
         }catch (IOException e){
             throw new NotFoundException("Expected to have test properties read from file: " + PATCH_TO_FILE +
                     "\nDetail message: " + e.getMessage());

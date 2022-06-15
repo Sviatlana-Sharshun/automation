@@ -1,5 +1,6 @@
 package model;
 
+import enums.RunType;
 import lombok.Data;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonProperty;

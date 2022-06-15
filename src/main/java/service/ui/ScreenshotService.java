@@ -1,6 +1,7 @@
 package service.ui;
 
 import com.codeborne.selenide.SelenideElement;
+import enums.Feature;
 import org.openqa.selenium.By;
 import service.ui.UiTestExecutor.UiExecutorType;
 
