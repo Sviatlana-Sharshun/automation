@@ -1,0 +1,14 @@
+{
+  "selenium_remote_url" : "http://localhost:4444/wd/hub",
+  "run_type" : "remote",
+  "selenium_browser" : "CHROME",
+  "browser_version" : "101.0",
+  "browser_size" : "2880x1800",
+  "selenium_headless" : "false",
+  "base_url" : "http://automationpractice.com/index.php",
+  "fast_set_value" : "true",
+  "selenium_timeout": "10000",
+  "selenium_vnc": "true",
+  "selenide_screenshots" : "true",
+  "selenide_save_page_source": "false"
+}
