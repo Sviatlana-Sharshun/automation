@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
+import enums.Feature;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import ru.yandex.qatools.ashot.AShot;

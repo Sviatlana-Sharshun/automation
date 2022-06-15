@@ -1,4 +1,4 @@
-package service.ui;
+package enums;
 
 import static com.codeborne.selenide.Browsers.CHROME;
 
