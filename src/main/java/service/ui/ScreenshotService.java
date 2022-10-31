@@ -8,7 +8,7 @@ import service.ui.UiTestExecutor.UiExecutorType;
 
 public class ScreenshotService {
 
-  private static final UiTestExecutor UI_TEST_EXECUTOR = UiTestExecutorFactory.getInstance().get(UiExecutorType.UPDATE);
+  private static final UiTestExecutor UI_TEST_EXECUTOR = UiTestExecutorFactory.getInstance().get(UiExecutorType.COMPARE);
 
 
   private ScreenshotService() {

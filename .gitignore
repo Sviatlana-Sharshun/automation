@@ -1,10 +1,6 @@
-/target
-/build
-/allure-results
 .idea
 *.iml
 out
 gen
-.allure
 *.log
 

@@ -3,7 +3,6 @@ package base;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.qameta.allure.selenide.LogType;
@@ -28,7 +27,7 @@ abstract public class BaseTest {
 
     public static void setUp() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        WebDriverManager.chromedriver().setup();
+//        WebDriverManager.chromedriver().setup();
         if (CONFIG.isRemoteType()) {
             Configuration.remote = CONFIG.getRemoteUrl();
         }
@@ -36,7 +35,7 @@ abstract public class BaseTest {
         Configuration.browserVersion = CONFIG.getBrowserVersion();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
-                "enableVideo", true
+                "enableVideo", false
         ));
         Configuration.browserCapabilities = capabilities;
         Configuration.browserSize = CONFIG.getBrowserSize();
@@ -65,8 +64,8 @@ abstract public class BaseTest {
 
     @BeforeEach
     public void openWebSite() {
-        begin();
         Selenide.open("/");
+        begin();
     }
 
     @AfterEach
